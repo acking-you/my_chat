@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package = "./protoc_message";
+
+
+
+
+//MsgType用于路由到具体业务逻辑的类型
+message BaseMessage{
+  int32 MsgType = 1;
+  bytes MsgContent = 2;
+}
+
+//用于提示服务状态的消息
+message Notice{
+  int32 StatusCode = 1;
+  string StatusMsg = 2;
+}
+
+
+//目前已经设计的一类消息
+message TextMessage{
+  int32 MsgRange = 1;
+  int64 Sender = 2;
+  int64 Receiver = 3;
+  string Content = 4;
+}

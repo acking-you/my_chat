@@ -1,0 +1,84 @@
+@startuml
+class ClientManager{
+    +ClientMapper: map[int64]*Client
+    +Broadcast: chan *Broadcast
+    +Register: chan *Client
+    +Unregister: chan *Client
+    +Do()
+    -register()
+    -unregister()
+}
+
+class Client{
+    +Id: int64
+    +Conn *websocket.Conn
+    +SendPip chan []byte
+    +Read()
+    +Write()
+}
+
+class Broadcast{
+    +Client *Client
+    +Msg IBroadcast
+    -clients *[]*Client
+    +Do()
+    -getClients()
+    -writeMessage()
+}
+
+class WsRouter{
+    -router: map[int32]HandlerFunc
+    +AddHandler(int32,HandlerFunc)
+    +ExecHandler(*Context)
+}
+
+interface IBroadcast{
+    +{abstract}MsgType():int32
+    +{abstract}MsgRange():int32
+    +{abstract}Sender():int64
+    +{abstract}Receiver():int64
+    +{abstract}Message():[]byte
+}
+
+class MessageBase{
+    +MsgType: int32
+    +MsgContent: []byte
+}
+
+class Context{
+    +Client *Client
+    +Msg *MessageBase
+}
+
+class TextMessage{
+    +MsgRange: int32
+    +Sender: int64
+    +Receiver: int64
+    +Content: string
+    +ToProtoc():[]byte
+    +FromProtoc([]byte)
+}
+
+interface IProtoc{
+	+ToProtoc():[]byte
+	+FromProtoc([]byte)
+}
+
+ClientManager -* Client
+ClientManager .> Broadcast
+
+Client .> MessageBase
+Client .> ClientManager
+Client .> WsRouter
+
+Broadcast -* Client
+Broadcast -* IBroadcast
+
+WsRouter .> Context
+WsRouter .> TextMessage
+
+TextMessage .|> IProtoc
+TextMessage .|> IBroadcast
+
+
+@enduml
