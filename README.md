@@ -69,14 +69,14 @@ go run main/main.go
 
 ## 前端效果展示
 
-登录和注册
+### 登录和注册
 ![my_chat_login](https://user-images.githubusercontent.com/73544345/191010055-39e32a2d-5160-4fa5-9b01-6133ab07d5e5.gif)
 
-用户信息
+### 用户信息
 ![image.png](https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/41a94b33c79941c490d346c01e8b275f~tplv-k3u1fbpfcp-watermark.image?)
 
-添加好友
+### 添加好友
 ![my_chat_add](https://user-images.githubusercontent.com/73544345/191010164-1af29169-ae6e-4097-9d54-dc094aba56b4.gif)
 
-好友实时聊天以及历史聊天记录获取
+### 好友实时聊天以及历史聊天记录获取
 ![my_chat_talk](https://user-images.githubusercontent.com/73544345/191010342-b795d840-0597-4bdd-a61c-d61eb19a5950.gif)
