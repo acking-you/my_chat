@@ -12,6 +12,7 @@
 # MyChat
 >注意：本项目使用go1.18进行开发，且使用到了go workspace进行内部依赖管理，以及go泛型简化业务，故需要的golang版本至少达到1.18
 ## 项目运行
+>温馨提示：运行项目前请修改配置文件
 ```shell
 go run main/main.go
 ```
