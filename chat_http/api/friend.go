@@ -2,11 +2,12 @@ package api
 
 import (
 	"chat_socket/core"
-	"github.com/gin-gonic/gin"
 	"go_http/models"
 	"go_http/pkg/utils"
 	"go_http/service"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 )
 
 func AddFriend(c *gin.Context) {
