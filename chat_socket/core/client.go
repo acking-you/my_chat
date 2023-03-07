@@ -1,9 +1,10 @@
 package core
 
 import (
-	"github.com/gorilla/websocket"
 	chatlog "logger/log"
 	"time"
+
+	"github.com/gorilla/websocket"
 )
 
 const (
@@ -29,7 +30,7 @@ func NewClient(id int64, conn *websocket.Conn) *Client {
 	}
 }
 
-//读取消息并执行对应的消息路由，有心跳检查的ping pong机制，每次pong之后都重新刷新长连接的存活时间
+// 读取消息并执行对应的消息路由，有心跳检查的ping pong机制，每次pong之后都重新刷新长连接的存活时间
 func (c *Client) Read() {
 	defer func() {
 		Manager.Unregister <- c
@@ -79,7 +80,7 @@ func (c *Client) Read() {
 
 func (c *Client) Write() {
 	//由于一个连接可以通过Read读取错误后进行关闭，所以Write没必要重复此操作
-	ticker := time.NewTimer(pingPeriod)
+	ticker := time.NewTicker(pingPeriod)
 	defer func() {
 		ticker.Stop()
 		_ = c.Conn.Close()

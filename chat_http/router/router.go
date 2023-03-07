@@ -1,9 +1,10 @@
 package router
 
 import (
-	"github.com/gin-gonic/gin"
 	"go_http/api"
 	"go_http/pkg/middleware"
+
+	"github.com/gin-gonic/gin"
 )
 
 func InitRouter() *gin.Engine {
