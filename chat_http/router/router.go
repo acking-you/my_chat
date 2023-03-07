@@ -12,8 +12,8 @@ func InitRouter() *gin.Engine {
 
 	baseGroup := r.Group("/my_chat")
 	//登录和注册接口
-	baseGroup.GET("login", middleware.SHAMiddleWare(), api.LoginHandler)
-	baseGroup.POST("login", middleware.SHAMiddleWare(), api.RegisterHandler)
+	baseGroup.POST("login", middleware.SHAMiddleWare(), api.LoginHandler)
+	baseGroup.POST("register", middleware.SHAMiddleWare(), api.RegisterHandler)
 	//好友相关接口
 	baseGroup.POST("friend", middleware.JWTMiddleWare(), api.AddFriend)
 	baseGroup.GET("friend", middleware.JWTMiddleWare(), api.QueryList)
