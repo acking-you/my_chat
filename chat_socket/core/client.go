@@ -79,7 +79,7 @@ func (c *Client) Read() {
 
 func (c *Client) Write() {
 	//由于一个连接可以通过Read读取错误后进行关闭，所以Write没必要重复此操作
-	ticker := time.NewTimer(pingPeriod)
+	ticker := time.NewTicker(pingPeriod)
 	defer func() {
 		ticker.Stop()
 		_ = c.Conn.Close()
